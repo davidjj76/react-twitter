@@ -1,7 +1,7 @@
-.App {
+.app {
 }
 
-.App-header {
+.app__header {
   background-color: white;
   border-bottom-width: 1px;
   height: 64px;
@@ -9,13 +9,13 @@
   top: 0;
 }
 
-.App-main {
+.app__main {
   border-left-width: 1px;
   border-right-width: 1px;
   min-height: calc(100vh - 128px);
 }
 
-.App-footer {
+.app__footer {
   border-top-width: 1px;
   height: 64px;
 }

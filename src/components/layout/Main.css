@@ -1,0 +1,10 @@
+.main {
+}
+
+.main__title {
+  align-items: center;
+  display: flex;
+  border-bottom-width: 1px;
+  height: 52px;
+  padding: 0 15px;
+}
