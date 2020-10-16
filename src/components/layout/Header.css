@@ -4,7 +4,7 @@
   padding: 0 15px;
 }
 
-.header__logo {
+.header__icon {
   align-items: center;
   background-color: transparent;
   border-radius: 9999px;
@@ -16,10 +16,10 @@
   width: 48px;
 }
 
-.header__logo:hover {
+.header__icon:hover {
   background-color: rgba(29, 161, 242, 0.1);
 }
 
-.header__logo .twitter-logo {
+.header__icon .twitter-icon {
   fill: currentColor;
 }
