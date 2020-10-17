@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  border-width: 0;
 }
 
 body {
@@ -27,7 +28,6 @@ h6 {
 }
 
 .bordered {
-  border: 0 solid black;
   border-color: rgb(230, 236, 240);
   border-style: solid;
 }

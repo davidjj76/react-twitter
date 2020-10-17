@@ -1,4 +1,5 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 
 import { Header, Main, Footer } from '../layout';
 import { LatestTweets } from '../tweets';
@@ -10,7 +11,14 @@ function App() {
       <Header className="app__header bordered" />
       <div className="container">
         <Main className="app__main bordered">
-          <LatestTweets />
+          <Switch>
+            <Route path="/" exact>
+              <LatestTweets />
+            </Route>
+            <Route path="/tweet">New Tweet</Route>
+            <Route path="/login">Login</Route>
+            <Route>Not found</Route>
+          </Switch>
         </Main>
       </div>
       <Footer className="app__footer bordered" />

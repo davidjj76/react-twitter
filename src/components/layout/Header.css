@@ -23,3 +23,14 @@
 .header__icon .twitter-icon {
   fill: currentColor;
 }
+
+.header__nav {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.header__nav-button {
+  width: 144px;
+  margin-left: 10px;
+}
