@@ -9,12 +9,10 @@ import './Tweet.css';
 
 const Tweet = ({
   className,
-  name,
-  username,
+  user: { name, username },
   createdAt,
   content,
-  likes,
-  liked,
+  likes: { length: likes },
 }) => (
   <article className={classNames('tweet bordered', className)}>
     <div className="tweet__first-column">
@@ -32,7 +30,7 @@ const Tweet = ({
       <div className="tweet__content">
         {content}
         <div className="tweet__actions">
-          <LikeButton liked={liked}>{likes || null}</LikeButton>
+          <LikeButton>{likes || null}</LikeButton>
         </div>
       </div>
     </div>
@@ -40,12 +38,13 @@ const Tweet = ({
 );
 
 Tweet.propTypes = {
-  name: T.string.isRequired,
-  username: T.string.isRequired,
+  user: T.shape({
+    username: T.string.isRequired,
+    name: T.string.isRequired,
+  }).isRequired,
   createdAt: T.string.isRequired,
   content: T.string.isRequired,
-  likes: T.number.isRequired,
-  liked: T.bool,
+  likes: T.array.isRequired,
   className: T.string,
 };
 
