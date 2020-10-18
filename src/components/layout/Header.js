@@ -7,7 +7,7 @@ import { Button } from '../atoms';
 import { ReactComponent as Icon } from '../../assets/twitter.svg';
 import './Header.css';
 
-const Header = ({ className, ...props }) => (
+const Header = ({ className, isLoggedIn, onLogout, ...props }) => (
   <header className={classNames('header', className)} {...props}>
     <Link className="header__icon" to="/">
       <Icon className="twitter-icon" width="32" height="32" />
@@ -16,15 +16,23 @@ const Header = ({ className, ...props }) => (
       <Button as={Link} to="/tweet" $primary className="header__nav-button">
         Tweet
       </Button>
-      <Button as={Link} to="/login" className="header__nav-button">
-        Log in
-      </Button>
+      {isLoggedIn ? (
+        <Button className="header__nav-button" onClick={onLogout}>
+          Log out
+        </Button>
+      ) : (
+        <Button as={Link} to="/login" className="header__nav-button">
+          Log in
+        </Button>
+      )}
     </nav>
   </header>
 );
 
 Header.propTypes = {
   className: T.string,
+  isLoggedIn: T.bool,
+  onLogout: T.func.isRequired,
 };
 
 export default Header;

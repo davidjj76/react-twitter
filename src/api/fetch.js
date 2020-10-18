@@ -1,4 +1,4 @@
-export default async function (input, init) {
+async function customFetch(input, init) {
   try {
     const response = await fetch(input, init);
     if (!response.ok) {
@@ -10,3 +10,16 @@ export default async function (input, init) {
     throw error;
   }
 }
+
+customFetch.post = (input, init) =>
+  customFetch(input, {
+    ...init,
+    method: 'POST',
+    headers: {
+      ...init.headers,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(init.body),
+  });
+
+export default customFetch;

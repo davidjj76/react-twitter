@@ -2,11 +2,14 @@ import React from 'react';
 import T from 'prop-types';
 import classNames from 'classnames';
 
+import { login } from '../../api/auth';
 import { FormField, Button } from '../atoms';
 import './LoginForm.css';
 
 class LoginForm extends React.Component {
   state = {
+    submitting: false,
+    error: null,
     form: {
       email: '',
       password: '',
@@ -20,16 +23,28 @@ class LoginForm extends React.Component {
     }));
   };
 
-  handleSubmit = ev => {
+  handleSubmit = async ev => {
+    const { history, onLoginSuccess } = this.props;
     ev.preventDefault();
-    console.log(this.state);
+    this.setState({ submitting: true });
+    try {
+      const auth = await login(this.state.form);
+      this.setState({ loading: false });
+      onLoginSuccess(auth);
+      history.push('/tweet');
+    } catch (error) {
+      this.setState({ error, submitting: false });
+    }
   };
 
   render() {
     const { className } = this.props;
     const {
+      submitting,
+      error,
       form: { email, password },
     } = this.state;
+
     return (
       <div className={classNames('login-form', className)}>
         <form onSubmit={this.handleSubmit}>
@@ -53,10 +68,11 @@ class LoginForm extends React.Component {
             type="submit"
             className="login-form__submit"
             $primary
-            disabled={!email || !password}
+            disabled={submitting || !email || !password}
           >
             Log in
           </Button>
+          {error && <div>Error: ooooooo</div>}
         </form>
       </div>
     );
@@ -65,6 +81,8 @@ class LoginForm extends React.Component {
 
 LoginForm.propTypes = {
   className: T.string,
+  history: T.shape({ push: T.func.isRequired }).isRequired,
+  onLoginSuccess: T.func.isRequired,
 };
 
 export default LoginForm;
