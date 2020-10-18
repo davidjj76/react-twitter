@@ -4,10 +4,8 @@ import { Switch, Route } from 'react-router-dom';
 import { Header, Main, Footer } from '../layout';
 import { LatestTweets } from '../tweets';
 import { LoginForm, PrivateRoute } from '../auth';
-import LocalStorage from '../../utils/localStorage';
+import localStorage from '../../utils/localStorage';
 import './App.css';
-
-const localStorage = new LocalStorage();
 
 class App extends React.Component {
   state = { loggedInUserId: null };
