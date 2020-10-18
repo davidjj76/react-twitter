@@ -13,7 +13,7 @@ const Header = ({ className, ...props }) => (
       <Icon className="twitter-icon" width="32" height="32" />
     </Link>
     <nav className="header__nav">
-      <Button as={Link} $accent to="/tweet" className="header__nav-button">
+      <Button as={Link} to="/tweet" $primary className="header__nav-button">
         Tweet
       </Button>
       <Button as={Link} to="/login" className="header__nav-button">
