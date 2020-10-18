@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import { Header, Main, Footer } from '../layout';
 import { LatestTweets } from '../tweets';
+import { LoginForm } from '../auth';
 import './App.css';
 
 function App() {
@@ -15,8 +16,10 @@ function App() {
             <Route path="/" exact>
               <LatestTweets />
             </Route>
-            <Route path="/tweet">New Tweet</Route>
-            <Route path="/login">Login</Route>
+            <Route path="/tweet"></Route>
+            <Route path="/login">
+              <LoginForm className="app__login-form" />
+            </Route>
             <Route>Not found</Route>
           </Switch>
         </Main>

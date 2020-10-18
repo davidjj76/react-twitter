@@ -1,0 +1,13 @@
+.login-form {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.login-form__field {
+  padding: 10px 0;
+}
+
+.login-form__submit {
+  margin-top: 10px;
+  width: 100%;
+}

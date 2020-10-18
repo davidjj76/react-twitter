@@ -1,6 +1,4 @@
-import React from 'react';
 import styled from 'styled-components';
-import T from 'prop-types';
 
 const accentColor = 'rgb(29, 161, 242)';
 
