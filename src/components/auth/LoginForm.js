@@ -26,14 +26,14 @@ class LoginForm extends React.Component {
   handleSubmit = async ev => {
     const { history, onLoginSuccess } = this.props;
     ev.preventDefault();
-    this.setState({ submitting: true });
+    this.setState({ submitting: true, error: null });
     try {
       const auth = await login(this.state.form);
-      this.setState({ loading: false });
+      this.setState({ submitting: false });
       onLoginSuccess(auth);
       history.push('/tweet');
     } catch (error) {
-      this.setState({ error, submitting: false });
+      this.setState({ submitting: false, error });
     }
   };
 
@@ -72,7 +72,7 @@ class LoginForm extends React.Component {
           >
             Log in
           </Button>
-          {error && <div>Error: ooooooo</div>}
+          {error && <div className="login-form__error">{error.message}</div>}
         </form>
       </div>
     );

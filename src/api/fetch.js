@@ -1,10 +1,10 @@
 async function customFetch(input, init) {
   try {
     const response = await fetch(input, init);
-    if (!response.ok) {
-      throw response;
-    }
     const result = await response.json();
+    if (!response.ok) {
+      throw result;
+    }
     return result;
   } catch (error) {
     throw error;
