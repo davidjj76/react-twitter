@@ -1,6 +1,7 @@
 import React from 'react';
 import T from 'prop-types';
 
+import { Section } from '../layout';
 import Tweet from './Tweet';
 
 import { getLatestTweets } from '../../api/tweets';
@@ -22,20 +23,23 @@ class LatestTweets extends React.Component {
     this.getLatestTweets();
   }
   render() {
+    // TODO: manage when there isn't any tweets
     const { loggedInUserId } = this.props;
     const { loading, error, tweets } = this.state;
+    let content = null;
+
     if (loading) {
-      return 'loading';
+      content = 'loading';
     }
     if (error) {
-      return 'error';
+      content = 'error';
     }
     if (tweets) {
-      return tweets.map(tweet => (
+      content = tweets.map(tweet => (
         <Tweet key={tweet.id} {...tweet} loggedInUserId={loggedInUserId} />
       ));
     }
-    return null;
+    return <Section title="This going to like you">{content}</Section>;
   }
 }
 

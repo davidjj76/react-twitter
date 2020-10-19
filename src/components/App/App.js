@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import { Header, Main, Footer } from '../layout';
+import { Header, Footer } from '../layout';
 import { LatestTweets, NewTweetForm } from '../tweets';
 import { LoginForm, PrivateRoute } from '../auth';
 import localStorage from '../../utils/localStorage';
@@ -37,7 +37,7 @@ class App extends React.Component {
           onLogout={this.handleLogout}
         />
         <div className="container">
-          <Main className="app__main bordered">
+          <main className="app__main bordered">
             <Switch>
               <Route path="/" exact>
                 <LatestTweets loggedInUserId={loggedInUserId} />
@@ -58,7 +58,7 @@ class App extends React.Component {
               </Route>
               <Route>Not found</Route>
             </Switch>
-          </Main>
+          </main>
         </div>
         <Footer className="app__footer bordered" />
       </div>

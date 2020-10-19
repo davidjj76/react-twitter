@@ -1,7 +1,7 @@
-.main {
+.section {
 }
 
-.main__title {
+.section__title {
   align-items: center;
   display: flex;
   border-bottom-width: 1px;

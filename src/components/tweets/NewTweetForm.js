@@ -2,6 +2,7 @@ import React from 'react';
 import T from 'prop-types';
 import classNames from 'classnames';
 
+import { Section } from '../layout';
 import { createTweet } from '../../api/tweets';
 import { Button, Photo, Textarea } from '../atoms';
 import defaultPhoto from '../../assets/default_profile.png';
@@ -39,7 +40,7 @@ class NewTweetForm extends React.Component {
     } = this.state;
 
     return (
-      <React.Fragment>
+      <Section title="What's happening?">
         <div className={classNames('new-tweet-form', className)}>
           <div className="new-tweet-form__first-column">
             <Photo src={defaultPhoto} alt="" />
@@ -71,7 +72,7 @@ class NewTweetForm extends React.Component {
         <div
           style={{ height: 10, backgroundColor: 'rgb(230, 236, 240)' }}
         ></div>
-      </React.Fragment>
+      </Section>
     );
   }
 }
