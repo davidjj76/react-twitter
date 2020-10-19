@@ -2,6 +2,7 @@ import React from 'react';
 import T from 'prop-types';
 import classNames from 'classnames';
 
+import { createTweet } from '../../api/tweets';
 import { Button, Photo, Textarea } from '../atoms';
 import defaultPhoto from '../../assets/default_profile.png';
 import './NewTweetForm.css';
@@ -10,17 +11,21 @@ const MAX_CHARACTERS = 280;
 
 class NewTweetForm extends React.Component {
   state = {
-    tweet: '',
+    tweet: { content: '' },
   };
 
   inputRef = React.createRef();
 
-  handleChange = ({ target: { value } }) => this.setState({ tweet: value });
+  handleChange = ({ target: { value } }) =>
+    this.setState({ tweet: { content: value } });
 
   handleSubmit = ev => {
     const { history } = this.props;
     ev.preventDefault();
-    history.push('/');
+    // TODO: manage error and submitting
+    createTweet(this.state.tweet)
+      .then(tweet => setTimeout(() => history.push(`/`), 500))
+      .catch(error => console.log(error));
   };
 
   componentDidMount() {
@@ -29,7 +34,9 @@ class NewTweetForm extends React.Component {
 
   render() {
     const { className } = this.props;
-    const { tweet } = this.state;
+    const {
+      tweet: { content },
+    } = this.state;
 
     return (
       <React.Fragment>
@@ -43,17 +50,17 @@ class NewTweetForm extends React.Component {
                 className="new-tweet-form__textarea"
                 placeholder="Hey! What's up!"
                 maxLength={MAX_CHARACTERS}
-                value={tweet}
+                value={content}
                 onChange={this.handleChange}
                 ref={this.inputRef}
               />
               <div className="new-tweet-form__actions">
-                <span className="new-tweet-form__characters">{`${tweet.length} / ${MAX_CHARACTERS}`}</span>
+                <span className="new-tweet-form__characters">{`${content.length} / ${MAX_CHARACTERS}`}</span>
                 <Button
                   type="submit"
                   className="new-tweet-form__submit"
                   $primary
-                  disabled={!tweet}
+                  disabled={!content}
                 >
                   Let's go!
                 </Button>
