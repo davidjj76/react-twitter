@@ -25,7 +25,7 @@ class NewTweetForm extends React.Component {
     ev.preventDefault();
     // TODO: manage error and submitting
     createTweet(this.state.tweet)
-      .then(tweet => setTimeout(() => history.push(`/`), 500))
+      .then(tweet => setTimeout(() => history.push(`/tweet/${tweet.id}`), 500))
       .catch(error => console.log(error));
   };
 

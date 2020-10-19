@@ -1,6 +1,7 @@
 import React from 'react';
 import T from 'prop-types';
 import classNames from 'classnames';
+import { useHistory } from 'react-router-dom';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
 import defaultPhoto from '../../assets/default_profile.png';
@@ -9,6 +10,7 @@ import { Photo } from '../atoms';
 import './Tweet.css';
 
 const Tweet = ({
+  id,
   className,
   user: { name, username },
   createdAt,
@@ -16,10 +18,17 @@ const Tweet = ({
   likes,
   loggedInUserId,
 }) => {
+  const history = useHistory();
+
   const isLiked = likes.some(like => like.userId === loggedInUserId);
 
+  const handleClick = () => history.push(`/tweet/${id}`);
+
   return (
-    <article className={classNames('tweet bordered', className)}>
+    <article
+      className={classNames('tweet bordered', className)}
+      onClick={handleClick}
+    >
       <div className="tweet__first-column">
         <Photo src={defaultPhoto} alt="" />
       </div>
@@ -46,6 +55,7 @@ const Tweet = ({
 };
 
 Tweet.propTypes = {
+  id: T.string.isRequired,
   user: T.shape({
     username: T.string.isRequired,
     name: T.string.isRequired,

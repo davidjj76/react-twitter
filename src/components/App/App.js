@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import { Header, Footer } from '../layout';
-import { LatestTweets, NewTweetForm } from '../tweets';
+import { LatestTweets, NewTweetForm, TweetDetail } from '../tweets';
 import { LoginForm, PrivateRoute } from '../auth';
 import localStorage from '../../utils/localStorage';
 import './App.css';
@@ -42,12 +42,13 @@ class App extends React.Component {
               <Route path="/" exact>
                 <LatestTweets loggedInUserId={loggedInUserId} />
               </Route>
+              <Route path="/tweet/:tweetId" exact component={TweetDetail} />
               <PrivateRoute
                 path="/tweet"
                 isLoggedIn={!!loggedInUserId}
                 component={NewTweetForm}
-              ></PrivateRoute>
-              <Route path="/login">
+              />
+              <Route path="/login" exact>
                 {({ history }) => (
                   <LoginForm
                     history={history}
