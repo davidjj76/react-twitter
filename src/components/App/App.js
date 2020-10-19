@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import { Header, Main, Footer } from '../layout';
-import { LatestTweets } from '../tweets';
+import { LatestTweets, NewTweetForm } from '../tweets';
 import { LoginForm, PrivateRoute } from '../auth';
 import localStorage from '../../utils/localStorage';
 import './App.css';
@@ -42,13 +42,15 @@ class App extends React.Component {
               <Route path="/" exact>
                 <LatestTweets loggedInUserId={loggedInUserId} />
               </Route>
-              <PrivateRoute path="/tweet" isLoggedIn={!!loggedInUserId}>
-                New tweet
-              </PrivateRoute>
+              <PrivateRoute
+                path="/tweet"
+                isLoggedIn={!!loggedInUserId}
+                component={NewTweetForm}
+              ></PrivateRoute>
               <Route path="/login">
-                {routerProps => (
+                {({ history }) => (
                   <LoginForm
-                    {...routerProps}
+                    history={history}
                     className="app__login-form"
                     onLoginSuccess={this.handleLoginSuccess}
                   />

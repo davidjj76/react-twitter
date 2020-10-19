@@ -5,6 +5,7 @@ import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
 import defaultPhoto from '../../assets/default_profile.png';
 import LikeButton from './LikeButton';
+import { Photo } from '../atoms';
 import './Tweet.css';
 
 const Tweet = ({
@@ -20,13 +21,13 @@ const Tweet = ({
   return (
     <article className={classNames('tweet bordered', className)}>
       <div className="tweet__first-column">
-        <img className="tweet__photo" src={defaultPhoto} alt=""></img>
+        <Photo src={defaultPhoto} alt="" />
       </div>
       <div className="tweet__second-column">
         <div className="tweet__metadata">
           <span className="tweet__metadata-name">{name}</span>
           <span className="tweet__metadata-username">{username}</span>
-          <span className="tweet_metadata-separator">·</span>
+          <span className="tweet__metadata-separator">·</span>
           <time className="tweet__metadata-times" dateTime={createdAt}>
             {formatDistanceToNow(new Date(createdAt))}
           </time>

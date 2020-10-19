@@ -1,5 +1,4 @@
 .tweet {
-  background-color: white;
   border-bottom-width: 1px;
   cursor: pointer;
   display: flex;
@@ -19,17 +18,6 @@
 .tweet__second-column {
   flex: 1;
   padding-bottom: 10px;
-}
-
-.tweet__photo {
-  background-color: transparent;
-  border-radius: 9999px;
-  color: rgba(29, 161, 242, 1);
-  display: inline-flex;
-  height: 48px;
-  justify-content: center;
-  transition: background-color 0.2s;
-  width: 48px;
 }
 
 .tweet__metadata {
