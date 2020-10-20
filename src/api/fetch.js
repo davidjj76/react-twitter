@@ -20,7 +20,10 @@ async function customFetch(input, init = {}) {
   }
 }
 
-customFetch.post = (input, { body, headers, ...init }) =>
+customFetch.post = (
+  input,
+  { body = {}, headers = new Headers(), ...init } = {},
+) =>
   customFetch(input, {
     ...init,
     method: 'POST',
@@ -29,6 +32,16 @@ customFetch.post = (input, { body, headers, ...init }) =>
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(body),
+  });
+
+customFetch.delete = (input, { headers = new Headers(), ...init } = {}) =>
+  customFetch(input, {
+    ...init,
+    method: 'DELETE',
+    headers: {
+      ...headers,
+      'Access-Control-Allow-Origin': '*',
+    },
   });
 
 export default customFetch;
