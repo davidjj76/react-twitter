@@ -18,6 +18,7 @@ class App extends React.Component {
   handleLogout = () => {
     this.setState({ loggedInUserId: null });
     localStorage.remove('auth');
+    // TODO: Rediect to login
   };
 
   componentDidMount() {

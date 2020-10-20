@@ -43,24 +43,19 @@ class LatestTweets extends React.Component {
     }));
   };
 
-  componentDidMount() {
-    this.getLatestTweets();
-  }
-
-  render() {
+  renderContent = () => {
     // TODO: manage when there isn't any tweets, and loading and error states
     const { loggedInUserId } = this.props;
     const { loading, error, tweets } = this.state;
-    let content = null;
 
     if (loading) {
-      content = 'loading';
+      return 'loading';
     }
     if (error) {
-      content = 'error';
+      return 'error';
     }
     if (tweets) {
-      content = tweets.map(tweet => (
+      return tweets.map(tweet => (
         <Tweet
           key={tweet.id}
           {...tweet}
@@ -70,7 +65,16 @@ class LatestTweets extends React.Component {
         />
       ));
     }
-    return <Section title="This going to like you">{content}</Section>;
+  };
+
+  componentDidMount() {
+    this.getLatestTweets();
+  }
+
+  render() {
+    return (
+      <Section title="This going to like you">{this.renderContent()}</Section>
+    );
   }
 }
 
