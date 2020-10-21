@@ -8,6 +8,11 @@ export const getLatestTweets = () => {
   return fetch(url);
 };
 
+export const getTweetDetail = tweetId => {
+  const url = `${tweetsBaseUrl}/tweets/${tweetId}`;
+  return fetch(url);
+};
+
 export const createTweet = tweet => {
   const url = `${tweetsBaseUrl}/tweets`;
   return fetch.post(url, { body: tweet });
