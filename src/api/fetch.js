@@ -4,7 +4,7 @@ async function customFetch(input, init = {}) {
   const auth = localStorage.get('auth');
   if (auth) {
     if (!init.headers) {
-      init.headers = new Headers();
+      init.headers = {};
     }
     init.headers.authorization = `Bearer ${auth.accessToken}`;
   }
@@ -20,28 +20,21 @@ async function customFetch(input, init = {}) {
   }
 }
 
-customFetch.post = (
-  input,
-  { body = {}, headers = new Headers(), ...init } = {},
-) =>
-  customFetch(input, {
+customFetch.post = (input, { body = {}, headers = {}, ...init } = {}) => {
+  headers['Content-Type'] = 'application/json';
+
+  return customFetch(input, {
     ...init,
     method: 'POST',
-    headers: {
-      ...headers,
-      'Content-Type': 'application/json',
-    },
+    headers,
     body: JSON.stringify(body),
   });
+};
 
-customFetch.delete = (input, { headers = new Headers(), ...init } = {}) =>
+customFetch.delete = (input, init = {}) =>
   customFetch(input, {
     ...init,
     method: 'DELETE',
-    headers: {
-      ...headers,
-      'Access-Control-Allow-Origin': '*',
-    },
   });
 
 export default customFetch;
