@@ -2,9 +2,9 @@ import React from 'react';
 import T from 'prop-types';
 
 import { getTweetDetail } from '../../api/tweets';
-import { Section } from '../layout';
+import Layout from '../layout';
 
-class TweetDetail extends React.Component {
+class TweetPage extends React.Component {
   state = {
     loading: false,
     error: null,
@@ -12,11 +12,7 @@ class TweetDetail extends React.Component {
   };
 
   getTweetDetail() {
-    const {
-      match: {
-        params: { tweetId },
-      },
-    } = this.props;
+    const { tweetId } = this.props;
     this.setState({ loading: true });
     getTweetDetail(tweetId)
       .then(tweet => this.setState({ tweet, loading: false }))
@@ -43,14 +39,17 @@ class TweetDetail extends React.Component {
   }
 
   render() {
-    return <Section title="Tweet detail">{this.renderContent()}</Section>;
+    const { tweetId, ...props } = this.props;
+    return (
+      <Layout {...props} title="Tweet detail">
+        <div className="tweet-page">{this.renderContent()}</div>
+      </Layout>
+    );
   }
 }
 
-TweetDetail.propTypes = {
-  match: T.shape({
-    params: T.shape({ tweetId: T.string.isRequired }).isRequired,
-  }).isRequired,
+TweetPage.propTypes = {
+  tweetId: T.string.isRequired,
 };
 
-export default TweetDetail;
+export default TweetPage;

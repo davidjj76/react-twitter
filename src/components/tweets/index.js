@@ -1,3 +1,3 @@
-export { default as LatestTweets } from './LatestTweets';
-export { default as NewTweetForm } from './NewTweetForm';
-export { default as TweetDetail } from './TweetDetail';
+export { default as TweetsPage } from './TweetsPage';
+export { default as NewTweetPage } from './NewTweetPage';
+export { default as TweetPage } from './TweetPage';

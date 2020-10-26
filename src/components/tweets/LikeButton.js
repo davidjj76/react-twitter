@@ -12,7 +12,7 @@ const LikeButton = ({ className, children, isLiked, onClick }) => {
   return (
     <div
       className={classNames('like-button', className, {
-        'like-button_liked': isLiked,
+        'like-button--liked': isLiked,
       })}
       onClick={onClick}
     >

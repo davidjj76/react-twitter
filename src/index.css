@@ -22,11 +22,6 @@ h6 {
   margin: 0;
 }
 
-.container {
-  margin: 0 auto;
-  max-width: 660px;
-}
-
 .bordered {
   border-color: rgb(230, 236, 240);
   border-style: solid;

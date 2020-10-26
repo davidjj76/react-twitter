@@ -1,7 +1,7 @@
 import React from 'react';
 import T from 'prop-types';
 
-import { Section } from '../layout';
+import Layout from '../layout';
 import Tweet from './Tweet';
 
 import { getLatestTweets } from '../../api/tweets';
@@ -9,14 +9,14 @@ import { getLatestTweets } from '../../api/tweets';
 const updateItem = (itemId, update) => item =>
   item.id === itemId ? { ...item, ...update(item) } : item;
 
-class LatestTweets extends React.Component {
+class TweetsPage extends React.Component {
   state = {
     loading: false,
     error: null,
     tweets: null,
   };
 
-  getLatestTweets() {
+  getTweets() {
     this.setState({ loading: true });
     getLatestTweets()
       .then(tweets => this.setState({ tweets, loading: false }))
@@ -45,7 +45,7 @@ class LatestTweets extends React.Component {
 
   renderContent = () => {
     // TODO: manage when there isn't any tweets, and loading and error states
-    const { loggedInUserId } = this.props;
+    const { loggedUserId } = this.props;
     const { loading, error, tweets } = this.state;
 
     if (loading) {
@@ -59,7 +59,7 @@ class LatestTweets extends React.Component {
         <Tweet
           key={tweet.id}
           {...tweet}
-          loggedInUserId={loggedInUserId}
+          loggedUserId={loggedUserId}
           onLikeCreate={this.handleLikeCreate}
           onLikeDelete={this.handleLikeDelete}
         />
@@ -68,18 +68,20 @@ class LatestTweets extends React.Component {
   };
 
   componentDidMount() {
-    this.getLatestTweets();
+    this.getTweets();
   }
 
   render() {
     return (
-      <Section title="This going to like you">{this.renderContent()}</Section>
+      <Layout {...this.props} title="This going to like you">
+        <div className="tweets-page">{this.renderContent()}</div>
+      </Layout>
     );
   }
 }
 
-LatestTweets.propTypes = {
-  loggedInUserId: T.string,
+TweetsPage.propTypes = {
+  loggedUserId: T.string,
 };
 
-export default LatestTweets;
+export default TweetsPage;

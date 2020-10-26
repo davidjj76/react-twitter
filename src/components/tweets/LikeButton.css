@@ -23,7 +23,7 @@
   fill: currentColor;
 }
 
-.like-button_liked,
+.like-button--liked,
 .like-button:hover {
   color: rgb(224, 36, 94);
 }

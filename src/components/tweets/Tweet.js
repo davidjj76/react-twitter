@@ -12,8 +12,8 @@ import './Tweet.css';
 
 class Tweet extends React.Component {
   getLikeFromLoggedUser = () => {
-    const { likes, loggedInUserId } = this.props;
-    return likes.find(like => like.userId === loggedInUserId);
+    const { likes, loggedUserId } = this.props;
+    return likes.find(like => like.userId === loggedUserId);
   };
 
   handleClick = () => {
@@ -24,13 +24,13 @@ class Tweet extends React.Component {
   handleLikeClick = ev => {
     const {
       id,
-      loggedInUserId,
+      loggedUserId,
       history,
       onLikeCreate,
       onLikeDelete,
     } = this.props;
     ev.stopPropagation();
-    if (!loggedInUserId) {
+    if (!loggedUserId) {
       return history.push('/login');
     }
     const likeFromLoggedUser = this.getLikeFromLoggedUser();
@@ -51,7 +51,7 @@ class Tweet extends React.Component {
       createdAt,
       content,
       likes,
-      loggedInUserId,
+      loggedUserId,
     } = this.props;
 
     const likeFromLoggedUser = this.getLikeFromLoggedUser();
@@ -77,7 +77,7 @@ class Tweet extends React.Component {
             {content}
             <div className="tweet__actions">
               <LikeButton
-                loggedInUserId={loggedInUserId}
+                loggedUserId={loggedUserId}
                 isLiked={!!likeFromLoggedUser}
                 onClick={this.handleLikeClick}
               >
@@ -101,7 +101,7 @@ Tweet.propTypes = {
   content: T.string.isRequired,
   likes: T.arrayOf(T.shape({ userId: T.string.isRequired }).isRequired)
     .isRequired,
-  loggedInUserId: T.string,
+  loggedUserId: T.string,
   history: T.shape({ push: T.func.isRequired }).isRequired,
   onLikeDelete: T.func.isRequired,
   onLikeCreate: T.func.isRequired,

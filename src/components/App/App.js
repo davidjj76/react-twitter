@@ -1,22 +1,20 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import { Header, Footer } from '../layout';
-import { LatestTweets, NewTweetForm, TweetDetail } from '../tweets';
-import { LoginForm, PrivateRoute } from '../auth';
+import { TweetsPage, NewTweetPage, TweetPage } from '../tweets';
+import { LoginPage, PrivateRoute } from '../auth';
 import localStorage from '../../utils/localStorage';
-import './App.css';
 
 class App extends React.Component {
-  state = { loggedInUserId: null };
+  state = { loggedUserId: null };
 
-  handleLoginSuccess = ({ id: loggedInUserId, accessToken }) => {
-    this.setState({ loggedInUserId });
-    localStorage.set('auth', { loggedInUserId, accessToken });
+  handleLoginSuccess = ({ id: loggedUserId, accessToken }) => {
+    this.setState({ loggedUserId });
+    localStorage.set('auth', { loggedUserId, accessToken });
   };
 
   handleLogout = () => {
-    this.setState({ loggedInUserId: null });
+    this.setState({ loggedUserId: null });
     localStorage.remove('auth');
     // TODO: Rediect to login
   };
@@ -24,45 +22,43 @@ class App extends React.Component {
   componentDidMount() {
     const auth = localStorage.get('auth');
     if (auth) {
-      this.setState({ loggedInUserId: auth.loggedInUserId });
+      this.setState({ loggedUserId: auth.loggedUserId });
     }
   }
 
   render() {
-    const { loggedInUserId } = this.state;
+    const { loggedUserId } = this.state;
+    const layoutProps = {
+      loggedUserId,
+      onLogout: this.handleLogout,
+    };
+
     return (
       <div className="app">
-        <Header
-          className="app__header bordered"
-          isLoggedIn={!!loggedInUserId}
-          onLogout={this.handleLogout}
-        />
-        <div className="container">
-          <main className="app__main bordered">
-            <Switch>
-              <Route path="/" exact>
-                <LatestTweets loggedInUserId={loggedInUserId} />
-              </Route>
-              <Route path="/tweet/:tweetId" exact component={TweetDetail} />
-              <PrivateRoute
-                path="/tweet"
-                isLoggedIn={!!loggedInUserId}
-                component={NewTweetForm}
+        <Switch>
+          <Route path="/" exact>
+            <TweetsPage {...layoutProps} />
+          </Route>
+          <Route path="/tweet/:tweetId" exact>
+            {({ match }) => (
+              <TweetPage {...layoutProps} tweetId={match.params.tweetId} />
+            )}
+          </Route>
+          <PrivateRoute path="/tweet" exact isLogged={!!loggedUserId}>
+            {({ history }) => (
+              <NewTweetPage {...layoutProps} history={history} />
+            )}
+          </PrivateRoute>
+          <Route path="/login" exact>
+            {({ history }) => (
+              <LoginPage
+                history={history}
+                onLoginSuccess={this.handleLoginSuccess}
               />
-              <Route path="/login" exact>
-                {({ history }) => (
-                  <LoginForm
-                    history={history}
-                    className="app__login-form"
-                    onLoginSuccess={this.handleLoginSuccess}
-                  />
-                )}
-              </Route>
-              <Route>Not found</Route>
-            </Switch>
-          </main>
-        </div>
-        <Footer className="app__footer bordered" />
+            )}
+          </Route>
+          <Route>Not found</Route>
+        </Switch>
       </div>
     );
   }

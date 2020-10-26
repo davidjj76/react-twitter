@@ -1,16 +1,15 @@
 import React from 'react';
 import T from 'prop-types';
-import classNames from 'classnames';
 
-import { Section } from '../layout';
+import Layout from '../layout';
 import { createTweet } from '../../api/tweets';
 import { Button, Photo, Textarea } from '../atoms';
 import defaultPhoto from '../../assets/default_profile.png';
-import './NewTweetForm.css';
+import './NewTweetPage.css';
 
 const MAX_CHARACTERS = 280;
 
-class NewTweetForm extends React.Component {
+class NewTweetPage extends React.Component {
   state = {
     tweet: { content: '' },
   };
@@ -34,32 +33,32 @@ class NewTweetForm extends React.Component {
   }
 
   render() {
-    const { className } = this.props;
+    const { history, ...props } = this.props;
     const {
       tweet: { content },
     } = this.state;
 
     return (
-      <Section title="What's happening?">
-        <div className={classNames('new-tweet-form', className)}>
-          <div className="new-tweet-form__first-column">
+      <Layout {...props} title="What's happening?">
+        <div className="new-tweet-page">
+          <div className="new-tweet-page__first-column">
             <Photo src={defaultPhoto} alt="" />
           </div>
-          <div className="tweet__second-column">
-            <form className="new-tweet-form__form" onSubmit={this.handleSubmit}>
+          <div className="new-tweet-page__second-column">
+            <form className="new-tweet-page__form" onSubmit={this.handleSubmit}>
               <Textarea
-                className="new-tweet-form__textarea"
+                className="new-tweet-page__form-textarea"
                 placeholder="Hey! What's up!"
                 maxLength={MAX_CHARACTERS}
                 value={content}
                 onChange={this.handleChange}
                 ref={this.inputRef}
               />
-              <div className="new-tweet-form__actions">
-                <span className="new-tweet-form__characters">{`${content.length} / ${MAX_CHARACTERS}`}</span>
+              <div className="new-tweet-page__form-actions">
+                <span className="new-tweet-page__characters">{`${content.length} / ${MAX_CHARACTERS}`}</span>
                 <Button
                   type="submit"
-                  className="new-tweet-form__submit"
+                  className="new-tweet-page__form-submit"
                   $primary
                   disabled={!content}
                 >
@@ -72,14 +71,13 @@ class NewTweetForm extends React.Component {
         <div
           style={{ height: 10, backgroundColor: 'rgb(230, 236, 240)' }}
         ></div>
-      </Section>
+      </Layout>
     );
   }
 }
 
-NewTweetForm.propTypes = {
-  className: T.string,
+NewTweetPage.propTypes = {
   history: T.shape({ push: T.func.isRequired }).isRequired,
 };
 
-export default NewTweetForm;
+export default NewTweetPage;
