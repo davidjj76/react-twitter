@@ -8,7 +8,7 @@ import localStorage from '../../utils/localStorage';
 class App extends React.Component {
   state = { loggedUserId: null };
 
-  handleLoginSuccess = ({ id: loggedUserId, accessToken }) => {
+  handleLogin = ({ id: loggedUserId, accessToken }) => {
     this.setState({ loggedUserId });
     localStorage.set('auth', { loggedUserId, accessToken });
   };
@@ -28,7 +28,7 @@ class App extends React.Component {
 
   render() {
     const { loggedUserId } = this.state;
-    const layoutProps = {
+    const authProps = {
       loggedUserId,
       onLogout: this.handleLogout,
     };
@@ -37,24 +37,19 @@ class App extends React.Component {
       <div className="app">
         <Switch>
           <Route path="/" exact>
-            <TweetsPage {...layoutProps} />
+            <TweetsPage {...authProps} />
           </Route>
           <Route path="/tweet/:tweetId" exact>
             {({ match }) => (
-              <TweetPage {...layoutProps} tweetId={match.params.tweetId} />
+              <TweetPage {...authProps} tweetId={match.params.tweetId} />
             )}
           </Route>
           <PrivateRoute path="/tweet" exact isLogged={!!loggedUserId}>
-            {({ history }) => (
-              <NewTweetPage {...layoutProps} history={history} />
-            )}
+            {({ history }) => <NewTweetPage {...authProps} history={history} />}
           </PrivateRoute>
           <Route path="/login" exact>
             {({ history }) => (
-              <LoginPage
-                history={history}
-                onLoginSuccess={this.handleLoginSuccess}
-              />
+              <LoginPage history={history} onLogin={this.handleLogin} />
             )}
           </Route>
           <Route>Not found</Route>

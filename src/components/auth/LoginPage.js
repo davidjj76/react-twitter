@@ -23,13 +23,13 @@ class LoginPage extends React.Component {
   };
 
   handleSubmit = async ev => {
-    const { history, onLoginSuccess } = this.props;
+    const { history, onLogin } = this.props;
     ev.preventDefault();
     this.setState({ submitting: true, error: null });
     try {
       const auth = await login(this.state.form);
       this.setState({ submitting: false });
-      onLoginSuccess(auth);
+      onLogin(auth);
       history.push('/tweet');
     } catch (error) {
       this.setState({ submitting: false, error });
@@ -45,7 +45,7 @@ class LoginPage extends React.Component {
 
     return (
       <div className="login-page">
-        <h1 className="login-page__title">Join Twitter</h1>
+        <h1 className="login-page__title">Log in to Twitter</h1>
         <form className="login-page__form" onSubmit={this.handleSubmit}>
           <FormField
             type="text"
@@ -80,7 +80,7 @@ class LoginPage extends React.Component {
 
 LoginPage.propTypes = {
   history: T.shape({ push: T.func.isRequired }).isRequired,
-  onLoginSuccess: T.func.isRequired,
+  onLogin: T.func.isRequired,
 };
 
 export default LoginPage;

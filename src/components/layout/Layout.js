@@ -12,12 +12,10 @@ function Layout({ loggedUserId, onLogout, children, title }) {
         isLogged={!!loggedUserId}
         onLogout={onLogout}
       />
-      <div className="layout__container">
-        <main className="layout__main bordered">
-          <h2 className="layout__title bordered">{title}</h2>
-          <section className="layout__content">{children}</section>
-        </main>
-      </div>
+      <main className="layout__main bordered">
+        <h2 className="layout__title bordered">{title}</h2>
+        <section className="layout__content">{children}</section>
+      </main>
       <footer className="layout__footer bordered">© 2020 Keepcoding</footer>
     </div>
   );

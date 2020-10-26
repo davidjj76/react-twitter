@@ -39,8 +39,11 @@ class NewTweetPage extends React.Component {
     } = this.state;
 
     return (
-      <Layout {...props} title="What's happening?">
-        <div className="new-tweet-page">
+      <Layout {...props} title="What are you thinking?">
+        <div
+          className="new-tweet-page bordered"
+          style={{ borderBottomWidth: 10 }}
+        >
           <div className="new-tweet-page__first-column">
             <Photo src={defaultPhoto} alt="" />
           </div>
@@ -68,9 +71,6 @@ class NewTweetPage extends React.Component {
             </form>
           </div>
         </div>
-        <div
-          style={{ height: 10, backgroundColor: 'rgb(230, 236, 240)' }}
-        ></div>
       </Layout>
     );
   }

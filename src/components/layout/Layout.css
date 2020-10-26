@@ -6,21 +6,18 @@
   top: 0;
 }
 
-.layout__container {
-  margin: 0 auto;
-  max-width: 660px;
-}
-
 .layout__main {
   border-left-width: 1px;
   border-right-width: 1px;
+  margin: 0 auto;
+  max-width: 660px;
   min-height: calc(100vh - 128px);
 }
 
 .layout__title {
   align-items: center;
-  display: flex;
   border-bottom-width: 1px;
+  display: flex;
   height: 52px;
   padding: 0 15px;
 }
@@ -29,6 +26,10 @@
   align-items: center;
   border-top-width: 1px;
   display: flex;
-  padding: 0 15px;
   height: 64px;
+}
+
+.layout__header,
+.layout__footer {
+  padding: 0 15px;
 }

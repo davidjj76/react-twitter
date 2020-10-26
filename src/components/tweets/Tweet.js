@@ -1,6 +1,5 @@
 import React from 'react';
 import T from 'prop-types';
-import classNames from 'classnames';
 import { withRouter } from 'react-router-dom';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
@@ -46,7 +45,6 @@ class Tweet extends React.Component {
 
   render() {
     const {
-      className,
       user: { name, username },
       createdAt,
       content,
@@ -57,10 +55,7 @@ class Tweet extends React.Component {
     const likeFromLoggedUser = this.getLikeFromLoggedUser();
 
     return (
-      <article
-        className={classNames('tweet bordered', className)}
-        onClick={this.handleClick}
-      >
+      <article className="tweet bordered" onClick={this.handleClick}>
         <div className="tweet__first-column">
           <Photo src={defaultPhoto} alt="" />
         </div>
@@ -105,7 +100,6 @@ Tweet.propTypes = {
   history: T.shape({ push: T.func.isRequired }).isRequired,
   onLikeDelete: T.func.isRequired,
   onLikeCreate: T.func.isRequired,
-  className: T.string,
 };
 
 export default withRouter(Tweet);

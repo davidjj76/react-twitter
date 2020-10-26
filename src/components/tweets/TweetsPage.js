@@ -73,7 +73,7 @@ class TweetsPage extends React.Component {
 
   render() {
     return (
-      <Layout {...this.props} title="This going to like you">
+      <Layout {...this.props} title="What's going on...">
         <div className="tweets-page">{this.renderContent()}</div>
       </Layout>
     );
