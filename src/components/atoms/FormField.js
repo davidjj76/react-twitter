@@ -23,7 +23,13 @@ class FormField extends React.Component {
     const { className, label, ...props } = this.props;
     const { focus } = this.state;
     return (
-      <div className={classNames('form-field', { focus }, className)}>
+      <div
+        className={classNames(
+          'form-field',
+          { 'form-field--focused': focus },
+          className,
+        )}
+      >
         <label className="form-field__label">
           <span>{label}</span>
           <input

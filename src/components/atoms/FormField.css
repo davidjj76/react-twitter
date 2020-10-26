@@ -30,7 +30,7 @@
   text-transform: capitalize;
 }
 
-.form-field.focus .form-field__label {
+.form-field--focused .form-field__label {
   color: rgb(29, 161, 242);
   border-color: rgb(29, 161, 242);
 }
