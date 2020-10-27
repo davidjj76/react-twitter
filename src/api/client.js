@@ -38,7 +38,10 @@ client.interceptors.response.use(
     if (!error.response) {
       return Promise.reject({ message: error.message });
     }
-    return Promise.reject(error.response.data);
+    return Promise.reject({
+      message: error.response.statusText,
+      ...error.response.data,
+    });
   },
 );
 

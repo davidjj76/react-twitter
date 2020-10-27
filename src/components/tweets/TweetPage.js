@@ -27,11 +27,12 @@ class TweetPage extends React.Component {
       return 'loading';
     }
     if (error) {
-      return 'error';
+      return error.message;
     }
     if (tweet) {
       return JSON.stringify(tweet);
     }
+    return null;
   };
 
   componentDidMount() {

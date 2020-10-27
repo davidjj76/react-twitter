@@ -52,7 +52,7 @@ class TweetsPage extends React.Component {
       return 'loading';
     }
     if (error) {
-      return 'error';
+      return error.message;
     }
     if (tweets) {
       return tweets.map(tweet => (
@@ -65,6 +65,7 @@ class TweetsPage extends React.Component {
         />
       ));
     }
+    return null;
   };
 
   componentDidMount() {
