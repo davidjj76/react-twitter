@@ -3,6 +3,7 @@ import T from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
+import { logout } from '../../api/auth';
 import { Button } from '../atoms';
 import { ReactComponent as Icon } from '../../assets/twitter.svg';
 import './Header.css';
@@ -17,7 +18,10 @@ const Header = ({ className, isLogged, onLogout, ...props }) => (
         Tweet
       </Button>
       {isLogged ? (
-        <Button className="header__nav-button" onClick={onLogout}>
+        <Button
+          className="header__nav-button"
+          onClick={() => logout().then(onLogout)}
+        >
           Log out
         </Button>
       ) : (

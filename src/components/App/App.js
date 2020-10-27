@@ -1,30 +1,24 @@
 import React from 'react';
+import T from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
 
 import { TweetsPage, NewTweetPage, TweetPage } from '../tweets';
 import { LoginPage, PrivateRoute } from '../auth';
-import localStorage from '../../utils/localStorage';
 
 class App extends React.Component {
-  state = { loggedUserId: null };
+  state = { loggedUserId: this.props.loggedUserId };
 
-  handleLogin = ({ id: loggedUserId, accessToken }) => {
-    this.setState({ loggedUserId });
-    localStorage.set('auth', { loggedUserId, accessToken });
+  handleLogin = auth => {
+    // const { onLogin } = this.props;
+    this.setState({ loggedUserId: auth.id });
+    // onLogin(auth);
   };
 
   handleLogout = () => {
+    // const { onLogout } = this.props;
     this.setState({ loggedUserId: null });
-    localStorage.remove('auth');
-    // TODO: Rediect to login
+    // onLogout();
   };
-
-  componentDidMount() {
-    const auth = localStorage.get('auth');
-    if (auth) {
-      this.setState({ loggedUserId: auth.loggedUserId });
-    }
-  }
 
   render() {
     const { loggedUserId } = this.state;
@@ -58,5 +52,15 @@ class App extends React.Component {
     );
   }
 }
+
+App.propTypes = {
+  // onLogin: T.func.isRequired,
+  // onLogout: T.func.isRequired,
+  loggedUserId: T.string,
+};
+
+App.defaulProps = {
+  loggedUserId: null,
+};
 
 export default App;

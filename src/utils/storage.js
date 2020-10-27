@@ -1,4 +1,4 @@
-export default {
+const storage = {
   get(key) {
     const value = localStorage.getItem(key);
     if (!value) {
@@ -15,3 +15,5 @@ export default {
     localStorage.removeItem(key);
   },
 };
+
+export default storage;

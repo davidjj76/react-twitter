@@ -1,29 +1,28 @@
-import fetch from './fetch';
+import client from './client';
 
-const { REACT_APP_BASE_URL: BASE_URL } = process.env;
-const tweetsBaseUrl = `${BASE_URL}/api/v1`;
+const tweetsBaseUrl = '/api/v1';
 
 export const getLatestTweets = () => {
   const url = `${tweetsBaseUrl}/tweets?_expand=user&_embed=likes&_sort=createdAt&_order=desc`;
-  return fetch(url);
+  return client.get(url);
 };
 
 export const getTweetDetail = tweetId => {
   const url = `${tweetsBaseUrl}/tweets/${tweetId}`;
-  return fetch(url);
+  return client.get(url);
 };
 
 export const createTweet = tweet => {
   const url = `${tweetsBaseUrl}/tweets`;
-  return fetch.post(url, { body: tweet });
+  return client.post(url, tweet);
 };
 
 export const createLike = tweetId => {
   const url = `${tweetsBaseUrl}/tweets/${tweetId}/likes`;
-  return fetch.post(url);
+  return client.post(url);
 };
 
 export const deleteLike = likeId => {
   const url = `${tweetsBaseUrl}/likes/${likeId}`;
-  return fetch.delete(url);
+  return client.delete(url);
 };
