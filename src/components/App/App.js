@@ -9,15 +9,15 @@ class App extends React.Component {
   state = { loggedUserId: this.props.loggedUserId };
 
   handleLogin = auth => {
-    // const { onLogin } = this.props;
+    const { onLogin } = this.props;
     this.setState({ loggedUserId: auth.id });
-    // onLogin(auth);
+    onLogin(auth);
   };
 
   handleLogout = () => {
-    // const { onLogout } = this.props;
+    const { onLogout } = this.props;
     this.setState({ loggedUserId: null });
-    // onLogout();
+    onLogout();
   };
 
   render() {
@@ -54,8 +54,8 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  // onLogin: T.func.isRequired,
-  // onLogout: T.func.isRequired,
+  onLogin: T.func.isRequired,
+  onLogout: T.func.isRequired,
   loggedUserId: T.string,
 };
 
