@@ -8,16 +8,12 @@ import { LoginPage, PrivateRoute } from '../auth';
 class App extends React.Component {
   state = { loggedUserId: this.props.loggedUserId };
 
-  handleLogin = auth => {
-    const { onLogin } = this.props;
-    this.setState({ loggedUserId: auth.id });
-    onLogin(auth);
+  handleLogin = (loggedUserId, cb) => {
+    this.setState({ loggedUserId }, cb);
   };
 
   handleLogout = () => {
-    const { onLogout } = this.props;
     this.setState({ loggedUserId: null });
-    onLogout();
   };
 
   render() {
@@ -54,8 +50,6 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  onLogin: T.func.isRequired,
-  onLogout: T.func.isRequired,
   loggedUserId: T.string,
 };
 

@@ -15,15 +15,7 @@ configureClient(auth);
 
 ReactDOM.render(
   <BrowserRouter>
-    <App
-      onLogin={auth => {
-        storage.set('auth', auth);
-      }}
-      onLogout={() => {
-        storage.remove('auth');
-      }}
-      loggedUserId={auth.id}
-    />
+    <App loggedUserId={auth.id} />
   </BrowserRouter>,
   document.getElementById('root'),
 );

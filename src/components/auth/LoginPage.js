@@ -29,8 +29,9 @@ class LoginPage extends React.Component {
     try {
       const auth = await login(this.state.form);
       this.setState({ submitting: false });
-      onLogin(auth);
-      history.push('/tweet');
+      onLogin(auth.id, () => {
+        history.push('/tweet');
+      });
     } catch (error) {
       this.setState({ submitting: false, error });
     }
