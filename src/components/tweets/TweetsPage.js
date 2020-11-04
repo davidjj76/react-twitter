@@ -1,10 +1,14 @@
 import React from 'react';
 import T from 'prop-types';
+import { Link } from 'react-router-dom';
 
+import { Button } from '../atoms';
 import Layout from '../layout';
 import Tweet from './Tweet';
 
 import { getLatestTweets } from '../../api/tweets';
+
+import './TweetsPage.css';
 
 const updateItem = (itemId, update) => item =>
   item.id === itemId ? { ...item, ...update(item) } : item;
@@ -54,18 +58,28 @@ class TweetsPage extends React.Component {
     if (error) {
       return error.message;
     }
-    if (tweets) {
-      return tweets.map(tweet => (
-        <Tweet
-          key={tweet.id}
-          {...tweet}
-          loggedUserId={loggedUserId}
-          onLikeCreate={this.handleLikeCreate}
-          onLikeDelete={this.handleLikeDelete}
-        />
-      ));
+    if (!tweets) {
+      return null;
     }
-    return null;
+    if (!tweets.length) {
+      return (
+        <div className="tweets-page__empty">
+          <p>Be the first twitter!</p>
+          <Button as={Link} to="/tweet" $primary>
+            Tweet
+          </Button>
+        </div>
+      );
+    }
+    return tweets.map(tweet => (
+      <Tweet
+        key={tweet.id}
+        {...tweet}
+        loggedUserId={loggedUserId}
+        onLikeCreate={this.handleLikeCreate}
+        onLikeDelete={this.handleLikeDelete}
+      />
+    ));
   };
 
   componentDidMount() {

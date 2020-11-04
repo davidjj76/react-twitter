@@ -42,7 +42,12 @@ class App extends React.Component {
               <LoginPage history={history} onLogin={this.handleLogin} />
             )}
           </Route>
-          <Route>Not found</Route>
+          {/* Other routes not matching, like a 404 page */}
+          <Route>
+            <h1 style={{ textAlign: 'center', fontSize: 48 }}>
+              404 | Not found page
+            </h1>
+          </Route>
         </Switch>
       </div>
     );

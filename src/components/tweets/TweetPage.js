@@ -1,5 +1,6 @@
 import React from 'react';
 import T from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 import { getTweetDetail } from '../../api/tweets';
 import Layout from '../layout';
@@ -27,12 +28,12 @@ class TweetPage extends React.Component {
       return 'loading';
     }
     if (error) {
-      return error.message;
+      return <Redirect to="/404" />;
     }
-    if (tweet) {
-      return JSON.stringify(tweet);
+    if (!tweet) {
+      return null;
     }
-    return null;
+    return JSON.stringify(tweet);
   };
 
   componentDidMount() {
