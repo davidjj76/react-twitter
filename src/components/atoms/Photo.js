@@ -1,13 +1,15 @@
-import styled from 'styled-components';
+import React from 'react';
+import T from 'prop-types';
+import classNames from 'classnames';
 
-const Photo = styled.img`
-  background-color: transparent;
-  border-radius: 9999px;
-  color: rgba(29, 161, 242, 1);
-  display: inline-flex;
-  height: 48px;
-  justify-content: center;
-  transition: background-color 0.2s;
-  width: 48px;
-`;
+import './Photo.css';
+
+const Photo = ({ className, ...props }) => (
+  <img className={classNames('photo', className)} alt="" {...props} />
+);
+
+Photo.propTypes = {
+  className: T.string,
+};
+
 export default Photo;
