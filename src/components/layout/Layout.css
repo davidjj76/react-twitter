@@ -1,4 +1,4 @@
-.layout__header {
+.layout-header {
   background-color: white;
   border-bottom-width: 1px;
   height: 64px;
@@ -6,7 +6,7 @@
   top: 0;
 }
 
-.layout__main {
+.layout-main {
   border-left-width: 1px;
   border-right-width: 1px;
   margin: 0 auto;
@@ -14,7 +14,7 @@
   min-height: calc(100vh - 128px);
 }
 
-.layout__title {
+.layout-title {
   align-items: center;
   border-bottom-width: 1px;
   display: flex;
@@ -22,14 +22,14 @@
   padding: 0 15px;
 }
 
-.layout__footer {
+.layout-footer {
   align-items: center;
   border-top-width: 1px;
   display: flex;
   height: 64px;
 }
 
-.layout__header,
-.layout__footer {
+.layout-header,
+.layout-footer {
   padding: 0 15px;
 }

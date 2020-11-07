@@ -11,15 +11,15 @@ const LikeButton = ({ className, children, isLiked, onClick }) => {
 
   return (
     <div
-      className={classNames('like-button', className, {
-        'like-button--liked': isLiked,
+      className={classNames('likeButton', className, {
+        'likeButton--liked': isLiked,
       })}
       onClick={onClick}
     >
-      <span className="like-button__icon">
-        <Icon className="like-icon" width="20" height="20" />
+      <span className="likeButton-icon">
+        <Icon width="20" height="20" />
       </span>
-      <span className="like-button__label">{children}</span>
+      <span className="likeButton-label">{children}</span>
     </div>
   );
 };

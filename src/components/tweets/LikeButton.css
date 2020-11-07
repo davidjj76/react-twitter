@@ -1,10 +1,10 @@
-.like-button {
+.likeButton {
   align-items: center;
   color: rgb(101, 119, 134);
   display: inline-flex;
 }
 
-.like-button__icon {
+.likeButton-icon {
   align-items: center;
   background-color: transparent;
   border-radius: 9999px;
@@ -14,25 +14,21 @@
   width: 34px;
 }
 
-.like-button,
-.like-button__icon {
+.likeButton,
+.likeButton-icon {
   transition: all 0.2s;
 }
 
-.like-button__icon .like-icon {
-  fill: currentColor;
-}
-
-.like-button--liked,
-.like-button:hover {
+.likeButton--liked,
+.likeButton:hover {
   color: rgb(224, 36, 94);
 }
 
-.like-button:hover .like-button__icon {
+.likeButton:hover .likeButton-icon {
   background: rgb(224, 36, 94, 0.1);
 }
 
-.like-button__label {
+.likeButton-label {
   font-size: 14px;
   min-width: calc(1em + 20px);
   padding: 0 2px;

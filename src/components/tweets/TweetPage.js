@@ -44,7 +44,7 @@ class TweetPage extends React.Component {
     const { tweetId, ...props } = this.props;
     return (
       <Layout {...props} title="Tweet detail">
-        <div className="tweet-page">{this.renderContent()}</div>
+        <div className="tweetPage">{this.renderContent()}</div>
       </Layout>
     );
   }

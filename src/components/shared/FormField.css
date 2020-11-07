@@ -1,7 +1,4 @@
-.form-field {
-}
-
-.form-field__label {
+.formField-label {
   background-color: rgb(245, 248, 250);
   border-bottom-style: solid;
   border-bottom-width: 2px;
@@ -13,7 +10,7 @@
   transition: all 0.2s;
 }
 
-.form-field__input {
+.formField-input {
   background-color: transparent;
   font-size: 20px;
   height: 36px;
@@ -22,15 +19,15 @@
   width: 100%;
 }
 
-.form-field__label span {
+.formField-label span {
   padding: 5px 10px 0 10px;
 }
 
-.form-field__label span:first-letter {
+.formField-label span:first-letter {
   text-transform: capitalize;
 }
 
-.form-field--focused .form-field__label {
+.formField--focused .formField-label {
   color: rgb(29, 161, 242);
   border-color: rgb(29, 161, 242);
 }

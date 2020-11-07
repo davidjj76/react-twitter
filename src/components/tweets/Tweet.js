@@ -6,7 +6,7 @@ import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { createLike, deleteLike } from '../../api/tweets';
 import defaultPhoto from '../../assets/default_profile.png';
 import LikeButton from './LikeButton';
-import { Photo } from '../atoms';
+import { Photo } from '../shared';
 import './Tweet.css';
 
 class Tweet extends React.Component {
@@ -56,21 +56,21 @@ class Tweet extends React.Component {
 
     return (
       <article className="tweet bordered" onClick={this.handleClick}>
-        <div className="tweet__first-column">
+        <div className="left">
           <Photo src={defaultPhoto} alt="" />
         </div>
-        <div className="tweet__second-column">
-          <div className="tweet__metadata">
-            <span className="tweet__metadata-name">{name}</span>
-            <span className="tweet__metadata-username">{username}</span>
-            <span className="tweet__metadata-separator">·</span>
-            <time className="tweet__metadata-times" dateTime={createdAt}>
+        <div className="right">
+          <div className="tweet-header">
+            <span className="tweet-name">{name}</span>
+            <span className="tweet-username">{username}</span>
+            <span className="tweet-separator">·</span>
+            <time dateTime={createdAt}>
               {formatDistanceToNow(new Date(createdAt))}
             </time>
           </div>
-          <div className="tweet__content">
+          <div>
             {content}
-            <div className="tweet__actions">
+            <div className="tweet-actions">
               <LikeButton
                 loggedUserId={loggedUserId}
                 isLiked={!!likeFromLoggedUser}

@@ -3,7 +3,7 @@ import T from 'prop-types';
 
 import Layout from '../layout';
 import { createTweet } from '../../api/tweets';
-import { Button, Photo, Textarea } from '../atoms';
+import { Button, Photo, Textarea } from '../shared';
 import defaultPhoto from '../../assets/default_profile.png';
 import './NewTweetPage.css';
 
@@ -41,27 +41,27 @@ class NewTweetPage extends React.Component {
     return (
       <Layout {...props} title="What are you thinking?">
         <div
-          className="new-tweet-page bordered"
+          className="newTweetPage bordered"
           style={{ borderBottomWidth: 10 }}
         >
-          <div className="new-tweet-page__first-column">
+          <div className="left">
             <Photo src={defaultPhoto} alt="" />
           </div>
-          <div className="new-tweet-page__second-column">
-            <form className="new-tweet-page__form" onSubmit={this.handleSubmit}>
+          <div className="right">
+            <form onSubmit={this.handleSubmit}>
               <Textarea
-                className="new-tweet-page__form-textarea"
+                className="newTweetPage-textarea"
                 placeholder="Hey! What's up!"
                 maxLength={MAX_CHARACTERS}
                 value={content}
                 onChange={this.handleChange}
                 ref={this.inputRef}
               />
-              <div className="new-tweet-page__form-actions">
-                <span className="new-tweet-page__characters">{`${content.length} / ${MAX_CHARACTERS}`}</span>
+              <div className="newTweetPage-footer">
+                <span className="newTweetPage-characters">{`${content.length} / ${MAX_CHARACTERS}`}</span>
                 <Button
                   type="submit"
-                  className="new-tweet-page__form-submit"
+                  className="newTweetPage-submit"
                   $primary
                   disabled={!content}
                 >

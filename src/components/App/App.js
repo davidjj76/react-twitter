@@ -44,9 +44,11 @@ class App extends React.Component {
           </Route>
           {/* Other routes not matching, like a 404 page */}
           <Route>
-            <h1 style={{ textAlign: 'center', fontSize: 48 }}>
+            <div
+              style={{ textAlign: 'center', fontSize: 48, fontWeight: 'bold' }}
+            >
               404 | Not found page
-            </h1>
+            </div>
           </Route>
         </Switch>
       </div>

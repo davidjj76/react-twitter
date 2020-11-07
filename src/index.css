@@ -22,7 +22,21 @@ h6 {
   margin: 0;
 }
 
+svg {
+  fill: currentColor;
+}
+
 .bordered {
   border-color: rgb(230, 236, 240);
   border-style: solid;
+}
+
+.left {
+  flex: 0 0 auto;
+  margin-right: 10px;
+}
+
+.right {
+  flex: 1;
+  padding-bottom: 10px;
 }

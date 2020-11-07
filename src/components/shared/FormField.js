@@ -25,15 +25,15 @@ class FormField extends React.Component {
     return (
       <div
         className={classNames(
-          'form-field',
-          { 'form-field--focused': focus },
+          'formField',
+          { 'formField--focused': focus },
           className,
         )}
       >
-        <label className="form-field__label">
+        <label className="formField-label">
           <span>{label}</span>
           <input
-            className="form-field__input"
+            className="formField-input"
             {...props}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}

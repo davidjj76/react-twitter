@@ -2,7 +2,7 @@ import React from 'react';
 import T from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import { Button } from '../atoms';
+import { Button } from '../shared';
 import Layout from '../layout';
 import Tweet from './Tweet';
 
@@ -63,7 +63,7 @@ class TweetsPage extends React.Component {
     }
     if (!tweets.length) {
       return (
-        <div className="tweets-page__empty">
+        <div className="tweetsPage-empty">
           <p>Be the first twitter!</p>
           <Button as={Link} to="/tweet" $primary>
             Tweet
@@ -89,7 +89,7 @@ class TweetsPage extends React.Component {
   render() {
     return (
       <Layout {...this.props} title="What's going on...">
-        <div className="tweets-page">{this.renderContent()}</div>
+        <div className="tweetsPage">{this.renderContent()}</div>
       </Layout>
     );
   }

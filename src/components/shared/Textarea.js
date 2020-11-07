@@ -7,7 +7,7 @@ import './Textarea.css';
 const Textarea = React.forwardRef(({ className, ...props }, ref) => {
   return (
     <div className={classNames('textarea', className)}>
-      <textarea {...props} ref={ref} className="textarea__input" />
+      <textarea {...props} ref={ref} className="textarea-input" />
     </div>
   );
 });

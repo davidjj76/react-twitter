@@ -2,7 +2,7 @@ import React from 'react';
 import T from 'prop-types';
 
 import { login } from '../../api/auth';
-import { FormField, Button } from '../atoms';
+import { FormField, Button } from '../shared';
 import './LoginPage.css';
 
 class LoginPage extends React.Component {
@@ -37,22 +37,29 @@ class LoginPage extends React.Component {
     }
   };
 
-  render() {
+  isSubmitEnabled = () => {
     const {
       submitting,
+      form: { email, password },
+    } = this.state;
+    return email && password && !submitting;
+  };
+
+  render() {
+    const {
       error,
       form: { email, password },
     } = this.state;
 
     return (
-      <div className="login-page">
-        <h1 className="login-page__title">Log in to Twitter</h1>
-        <form className="login-page__form" onSubmit={this.handleSubmit}>
+      <div className="loginPage">
+        <h1 className="loginPage-title">Log in to Twitter</h1>
+        <form onSubmit={this.handleSubmit}>
           <FormField
             type="text"
             name="email"
             label="phone, email or username"
-            className="login-page__form-field"
+            className="loginPage-field"
             value={email}
             onChange={this.handleChange}
           />
@@ -60,19 +67,19 @@ class LoginPage extends React.Component {
             type="password"
             name="password"
             label="password"
-            className="login-page__form-field"
+            className="loginPage-field"
             value={password}
             onChange={this.handleChange}
           />
           <Button
             type="submit"
-            className="login-page__form-submit"
+            className="loginPage-submit"
             $primary
-            disabled={submitting || !email || !password}
+            disabled={!this.isSubmitEnabled()}
           >
             Log in
           </Button>
-          {error && <div className="login-page__error">{error.message}</div>}
+          {error && <div className="loginPage-error">{error.message}</div>}
         </form>
       </div>
     );
