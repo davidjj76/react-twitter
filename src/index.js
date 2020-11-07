@@ -8,14 +8,14 @@ import App from './components/App';
 import './index.css';
 
 // Read auth from storage
-const auth = storage.get('auth') || {};
+const auth = storage.get('auth') || { id: null, accessToken: null };
 
 // Configure api client
-configureClient(auth);
+configureClient(auth.accessToken);
 
 ReactDOM.render(
   <BrowserRouter>
-    <App loggedUserId={auth.id} />
+    <App initialLoggedUserId={auth.id} />
   </BrowserRouter>,
   document.getElementById('root'),
 );

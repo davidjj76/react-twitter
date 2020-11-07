@@ -6,7 +6,7 @@ import { TweetsPage, NewTweetPage, TweetPage } from '../tweets';
 import { LoginPage, PrivateRoute } from '../auth';
 
 class App extends React.Component {
-  state = { loggedUserId: this.props.loggedUserId };
+  state = { loggedUserId: this.props.initialLoggedUserId };
 
   handleLogin = (loggedUserId, cb) => {
     this.setState({ loggedUserId }, cb);
@@ -57,11 +57,7 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  loggedUserId: T.string,
-};
-
-App.defaulProps = {
-  loggedUserId: null,
+  initialLoggedUserId: T.string,
 };
 
 export default App;

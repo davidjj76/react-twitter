@@ -3,8 +3,9 @@ import client from './client';
 
 export const login = credentials =>
   client.login(credentials).then(auth => {
-    storage.set('auth', auth);
-    return auth;
+    const { id, accessToken } = auth;
+    storage.set('auth', { id, accessToken });
+    return id;
   });
 
 export const logout = () =>
